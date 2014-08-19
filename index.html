@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OS 1</title>
     <link rel="stylesheet" href="stylesheets/app.css" />
+     <link rel="stylesheet" href="stylesheets/calculator.css" />
+     <link rel="stylesheet" href="stylesheets/gallery.css" />
+      <link rel="stylesheet" href="stylesheets/angular.css" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
 
-    <script src="bower_components/modernizr/modernizr.js"></script>
 
+    <script src="bower_components/modernizr/modernizr.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+     <script src="js/gallery.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+     <script type="text/javascript" src="js/angular.js"></script>
   </head>
 
     <!-- Preloader -->
@@ -19,7 +25,7 @@
         $(window).load(function() { // makes sure the whole site is loaded
                       
                    // pause for dramatic effect
-          $('#preloader').delay(1000).slideUp('slow'); 
+          $('#preloader').delay(2000).slideUp('slow'); 
           $('body').delay(1000).css({'overflow':'visible'});
         })
       
@@ -27,7 +33,7 @@
 
   <body>
   
-    <div class="row">
+    <div class="row">  
       <div class="large-12 columns">
         <div class="panel">
           <center><img src="img/os1_logo.jpg"></center><br>
@@ -37,62 +43,175 @@
    
     <div class="row">
        <div class="large-4 medium-4 small-4 columns">
+<!-- Left nav -->           
+            <ul class="side-nav">
+              <li><a href="#" class="mailLink"><i id="navUI" class="fa fa-envelope" style="padding-left:75%"></i></a></li>
 
+              <li><a href="#" class="weatherLink"><i id="navUI"class="fa fa-cloud fa-2x" style="padding-left:50%"></i></a></li>
+
+              <li><a href="#" class="scheduleLink"><i id="navUI" class="fa fa-calendar fa-3x" style="padding-left:25%"></i></a></li>
+
+              <li><a href="#" class="modalLink"><i class="fa fa-check-square fa-5x"></i></a></li>
+            </ul>
        </div>
 
        <div class="large-4 medium-4 small-4 columns">
-            
-            <ul class="side-nav">
-              <li><a href="http://instagram.com/ryando"><i id="navUI" class="fa fa-camera-retro" style="padding-left:225px"></i></a></li>
 
-              <li><a href="#"><i id="navUI"class="fa fa-video-camera fa-2x" style="padding-left:150px"></i></a></li>
-
-              <li><a href="#"><i id="navUI" class="fa fa-cloud fa-3x" style="padding-left:75px"></i></a></li>
-
-              <li><a href="#" class="modalLink"><i class="fa fa-square-o fa-5x" style="color: #CF4029"></i></a></li>
-            </ul>     
+        <center><div class="flex-video">
+                      <iframe width="560" height="315" src="http://www.youtube.com/embed/72sC7AyuU7o?rel=0" autoplay="0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+<center><a href="#" class="modalLink"><i class="fa fa-square-o fa-5x" style="color: #cf4029"></i></a></center>
+                  </center>
          
        </div>
-
+<!-- Right nav -->
        <div class="large-4 medium-4 small-4 columns">
-      
-       </div>
+              <ul class="side-nav">
+              <li><a href="#" class="photoLink"><i id="navUI" class="fa fa-camera-retro" style="padding-left:5%"></i></a></li>
 
-<!-- MODALS -->
+              <li><a href="#" class="videoLink"><i id="navUI"class="fa fa-video-camera fa-2x" style="padding-left:25%"></i></a></li>
+
+              <li><a href="http://reddit.com"><i id="navUI" class="fa fa-reddit fa-3x" style="padding-left:40%"></i></a></li>
+
+              <li><a href="#"><i class="fa fa-music fa-5x" style="padding-left:60%; padding-right: 1%;"></i></a></li>
+            </ul>
+      </div>
+
+<!-- Main modal -->
+
             <div id="modal">
+              <div class="panel">           
+               <div class="row">
+<!-- To-do -->
+                  <div ng-app>
+                    <div id="todoapp" ng-controller="TodoCtrl">
+                      <header>
+                          <center><h1>To-Do</h1>
+                          <input id="new-todo" type="text" ng-model="todoText"  size="30"
+                          placeholder="e.g. procrastinate" ng-keyup="addTodo()"/>
+                      </header>
+
+                      <section id="main" style="display: block;">
+                          <div ng-show="isTodo()">
+                            <input id="toggle-all" type="checkbox" ng-model="markAll"
+                              ng-click="toggleMarkAll()"/>
+                            <label for="toggle-all">Mark all as complete</label>
+                          </div>
+                          
+                          <ul id="todo-list" class="unstyled">
+                            <li ng-repeat="todo in todos" ng-dblclick="toggleEditMode()">
+                              <div class="view" ng-keyup="editTodo()">
+                                <input type="checkbox" ng-model="todo.done"/>
+                                <span class="done-{{todo.done}}" >{{todo.text}}</span>
+                              </div>
+                              <input class="edit" type="text" ng-model="todo.text"
+                                ng-keyup="editOnEnter(todo)"/>
+                            </li>
+                          </ul>
+                      </section>
+                      
+                      <footer style="display: block;">
+                          <div class="todo-count">{{remaining()}} of {{todos.length}} remaining</div>
+                            <a id="clear-completed" ng-click="clear()" ng-show="hasDone()">
+                                Clear <span >{{(todos.length - remaining())}} {{itemText()}}</span>.
+                            </a></center><br>
+                      </footer>
+                            
+                    </div>
+                  </div>
+
+                  <center><a href="#" class="modalClose"><i class="fa fa-square-o fa-5x" style="color: #cf4029"></i></a></center>
+
+                </div>
+              </div>
+          </div>
+
+<!-- Schedule modal -->
+            <div id="schedule">
               <div class="panel">           
                <div class="row">
 
                 <div class="large-4 medium-4 small-4 columns">
-                    1
+                    
                   </div>
 
                   <div class="large-4 medium-4 small-4 columns">
-                    <div class="flex-video">
-                      <iframe src="//player.vimeo.com/video/87412031?byline=0&amp;portrait=0&amp;color=ff9933" width="720" height="405" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    </div>
+                    
                   </div>
 
                   <div class="large-4 medium-4 small-4 columns">
-                    3
+                   
                   </div>
             
                 </div>
+                   <center><iframe src="https://www.google.com/calendar/embed?src=p1i07up220a9snkf36nbeptrg0%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="75%" height="300" frameborder="0" scrolling="no"></iframe></center>
               </div>
-              <center><a href="#" class="modalClose"><i class="fa fa-square-o fa-5x" style="color: #fff"></i></a>
-
-              </center>
+            
+              <center><a href="#" class="modalClose"><i class="fa fa-square-o fa-5x" style="color: #fff"></i></a></center>
+              
 
           </div>
 
+<!-- Video modal -->
+            <div id="video">
+              <div class="panel">           
+               
+
+                <center><div class="flex-video">
+                      <iframe src="http://player.vimeo.com/video/87412031?byline=0&amp;portrait=0&amp;color=ff9933" width="400" height="225" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div></center>
+            
+         
+              </div>
+            
+              <center><a href="#" class="modalClose"><i class="fa fa-square-o fa-5x" style="color: #fff"></i></a></center>
+              
+
+          </div>
+
+<!-- Photo modal -->
+            <div id="photo">
+              <div class="panel">           
+               
+                <div class="panel">
+                  <div id="thumbs">
+                    <a href="#photo"><img src="img/photo1.jpg" alt="photo1" data-caption="caption1"></a>
+                    <a href="#photo"><img src="img/photo2.jpg" alt="photo2" data-caption="caption2"></a>
+                    <a href="#photo"><img src="img/photo3.jpg" alt="photo3" data-caption="caption3"></a>
+                    <a href="#photo"><img src="img/photo4.jpg" alt="photo4" data-caption="caption4"></a>
+                    <a href="#photo"><img src="img/photo5.jpg" alt="photo5" data-caption="caption5"></a>
+                    <a href="#photo"><img src="img/photo6.jpg" alt="photo6" data-caption="caption6"></a>
+                  </div>
+                </div>
+              <div class="panel">
+                <div id="fullsize">
+                    <a href="#"><img src="img/photo1.jpg" alt="wow such professional"></a>
+                    <p>Caption</p>
+                </div>
+              </div>
+
+            
+         
+              </div>
+            
+              <center><a href="#" class="modalClose"><i class="fa fa-square-o fa-5x" style="color: #fff"></i></a></center>
+              
+
+          </div>
+
+
+<!-- SnapWidget 
+              <center><iframe src="http://snapwidget.com/sc/?u=cnlhbmRvfGlufDMwMHwzfDN8fG5vfDV8bm9uZXxvblN0YXJ0fHllcw==&v=15714" title="Instagram Widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:500px; height:300px"></iframe></center>-->
+
+
           <div id="modalBg"></div>
 
-          
             <div class="large-4 medium-4 columns">
               
             </div>
             <div class="large-4 medium-4 columns">
               
+
             </div>        
           </div>
         </div>
@@ -201,7 +320,10 @@
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
+    
     <script src="js/app.js"></script>
+    <script src="js/calculator.js"></script>
+     <script src="js/gallery.js"></script>
   </body>
     <!-- Preloader -->
   <div id="preloader">
