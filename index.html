@@ -18,7 +18,7 @@
       
         $(window).load(function() { // makes sure the whole site is loaded
                       
-                   // change to 4000 for live site
+                   // pause for dramatic effect
           $('#preloader').delay(1000).slideUp('slow'); 
           $('body').delay(1000).css({'overflow':'visible'});
         })
@@ -26,30 +26,63 @@
     </script>
 
   <body>
-
+  
     <div class="row">
       <div class="large-12 columns">
-        <center><h1>OS 1</h1></center>
+        <div class="panel">
+          <center><img src="img/os1_logo.jpg"></center><br>
+        </div>
       </div>
     </div>
    
     <div class="row">
-      <div class="large-12 columns">
-            <center><a href="#" class="modalLink"><i class="fa fa-square-o fa-5x" style="color: #CF4029"></i></a></center>
-            <!-- MODAL -->
+       <div class="large-4 medium-4 small-4 columns">
+
+       </div>
+
+       <div class="large-4 medium-4 small-4 columns">
+            
+            <ul class="side-nav">
+              <li><a href="http://instagram.com/ryando"><i id="navUI" class="fa fa-camera-retro" style="padding-left:225px"></i></a></li>
+
+              <li><a href="#"><i id="navUI"class="fa fa-video-camera fa-2x" style="padding-left:150px"></i></a></li>
+
+              <li><a href="#"><i id="navUI" class="fa fa-cloud fa-3x" style="padding-left:75px"></i></a></li>
+
+              <li><a href="#" class="modalLink"><i class="fa fa-square-o fa-5x" style="color: #CF4029"></i></a></li>
+            </ul>     
+         
+       </div>
+
+       <div class="large-4 medium-4 small-4 columns">
+      
+       </div>
+
+<!-- MODALS -->
             <div id="modal">
-              <div class="panel">
-                
-                <ul class="side-nav">
-                  <li><a href="http://instagram.com/ryando"><i class="fa fa-camera-retro" style="padding-left:225px"></i></a></li>
+              <div class="panel">           
+               <div class="row">
 
-                  <li><a href="#"><i class="fa fa-video-camera fa-2x" style="padding-left:150px"></i></a></li>
+                <div class="large-4 medium-4 small-4 columns">
+                    1
+                  </div>
 
-                  <li><a href="#"><i class="fa fa-cloud fa-3x" style="padding-left:75px"></i></a></li>
+                  <div class="large-4 medium-4 small-4 columns">
+                    <div class="flex-video">
+                      <iframe src="//player.vimeo.com/video/87412031?byline=0&amp;portrait=0&amp;color=ff9933" width="720" height="405" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                  </div>
 
-                  <li><a href="#" class="modalClose"><i class="fa fa-square-o fa-5x" style="color: #CF4029"></i></a></li>
-                </ul>
+                  <div class="large-4 medium-4 small-4 columns">
+                    3
+                  </div>
+            
+                </div>
               </div>
+              <center><a href="#" class="modalClose"><i class="fa fa-square-o fa-5x" style="color: #fff"></i></a>
+
+              </center>
+
           </div>
 
           <div id="modalBg"></div>

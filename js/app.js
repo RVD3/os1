@@ -7,13 +7,12 @@ $(function() {
     $('.modalLink').on('click', function(e) {
         e.preventDefault();
         
-        $('#modal, #modalBg').slideDown();
+        $('#modal, #modalBg').fadeIn();
     });
     
-    $('#modalBg, #modalClose').on('click', function(e) {
+    $('#modalBg, .modalClose').on('click', function(e) {
         e.preventDefault();
         
         $('#modal, #modalBg').fadeOut();
     });
-    
 });
